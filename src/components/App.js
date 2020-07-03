@@ -1,24 +1,22 @@
 import React from 'react';
 import Header from "./Header";
 import BeerControl from "./BeerControl";
-import BeerList from "./BeerList";
 import { Grid } from "@material-ui/core";
 import '../App.css';
 
 function App() {
   return (
     <React.Fragment>
-      <div class="bg-image">
-        <Grid item><Header/></Grid>
         <Grid container direction="column">
-          <Grid item xs={12} sm={6}>
-            <BeerControl/>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <BeerList/>
+          <Grid item><Header/></Grid>
+          <Grid item container className="card">
+            <Grid item xs={0} sm={2}/>
+            <Grid item xs={12} sm={8}>
+              <BeerControl/>
+            </Grid>
+            <Grid item xs={0} sm={2}/>
           </Grid>
         </Grid>
-      </div>
     </React.Fragment>
   );
 }

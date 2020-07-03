@@ -11,8 +11,8 @@ function BeerDetail(props) {
       <p>Price: {beer.price}</p>
       <p>ABV%: {beer.abv}</p>
       <p>Flavor Profile: {beer.description}</p>
-      <button onClick={props.onClickingEdit}>Edit Details</button>
-      <button onClick={() => onClickingDelete(beer.id)}>Delete Beer</button>
+      <button className="btn" onClick={props.onClickingEdit}>Edit Details</button>
+      <button className="btn" onClick={() => onClickingDelete(beer.id)}>Delete Beer</button>
       <hr />
     </React.Fragment>
   ); 

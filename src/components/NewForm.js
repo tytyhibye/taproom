@@ -13,7 +13,7 @@ function NewForm(props) {
   );
   function handleNewFormSubmission(event) {
     event.preventDefault();
-    props.onNewCreation({ name: event.target.name.value, brand: event.target.brand.value, price: event.target.price.value, abv: event.target.abv.value, description: event.target.description.value, id: v4() });
+    props.onNewBeerCreation({ name: event.target.name.value, brand: event.target.brand.value, price: event.target.price.value, abv: event.target.abv.value, description: event.target.description.value, id: v4() });
   }
 }
 NewForm.propTypes = {

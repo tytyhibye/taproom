@@ -3,7 +3,7 @@ import NewForm from "./NewForm";
 import BeerList from "./BeerList";
 import Details from "./Details";
 import EditForm from './EditForm';
-// import Count from './Count';
+
 
 class BeerControl extends React.Component {
 
@@ -12,7 +12,7 @@ class BeerControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       masterBeerList: [],
-      count: 124,
+      counter: 0,
       selectedBeer: null,
       editing: false
     };
@@ -31,31 +31,29 @@ class BeerControl extends React.Component {
       counter: 0
     });
   }
+  // decreaseCount = () => {
+  //   if(this.state.count <=10){
 
-  // handleClick = () => {
-  //   if (this.state.selectedBeer != null) {
-  //     this.setState({
-  //       formVisibleOnPage: false,
-  //       selectedBeer: null,
-  //       editing: false
-  //     });
-  //   } else if (this.state.counter === 0) {
-  //     this.setState(prevState => ({
-  //       counter: prevState.counter + 1
-  //     }));
-  //   } else {
-  //     this.setState(prevState => ({
-  //       formVisibleOnPage: !prevState.formVisibleOnPage,
-  //       counter: 0
-  //     }));
   //   }
+  //   this.setState({ count: this.state.count -1 });
   // }
-
-  decreaseCount = () => {
-    if(this.state.count <=10){
-
+  handleClick = () => {
+    if (this.state.selectedBeer != null) {
+      this.setState({
+        formVisibleOnPage: false,
+        selectedBeer: null,
+        editing: false
+      });
+    } else if (this.state.counter === 0) {
+      this.setState(prevState => ({
+        counter: prevState.counter + 1
+      }));
+    } else {
+      this.setState(prevState => ({
+        formVisibleOnPage: !prevState.formVisibleOnPage,
+        counter: 0
+      }));
     }
-    this.setState({ count: this.state.count -1 });
   }
 
   handleEditingBeerInList = (beerToEdit) => {
@@ -98,12 +96,12 @@ class BeerControl extends React.Component {
           onClickingEdit={this.handleEditClick}
         />
       buttonText = "Return to Beer List";
-    } else if (this.state.counter === 0) { //possibly not being called
+    } else if (this.state.counter === 0) {
       currentlyVisibleState =
         <BeerList
           beerList={this.state.masterBeerList}
           onBeerSelection={this.handleChangingSelectedBeer}
-          onClickingDecrement={this.decreaseCount}
+          // onClickingDecrement={this.decreaseCount}
         />
       buttonText = "Add Beer!";
     } else if (this.state.counter === 1) {
@@ -117,11 +115,10 @@ class BeerControl extends React.Component {
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
+        <button className="btn" onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
-  }    
-
+  }
 }
 
 export default BeerControl;

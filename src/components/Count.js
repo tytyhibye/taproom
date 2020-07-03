@@ -6,7 +6,7 @@ function Count(props) {
   const { beer, onClickingDecrement } = props;
   return (
     <React.Fragment>
-      <button class name="sellBtn" onClick={()=> onClickingDecrement(beer.count)}>Sell Pint</button>
+      <button className="btn" onClick={()=> onClickingDecrement(beer.count)}>Sell Pint</button>
       <p>Pints Left: {beer.count}</p>
     </React.Fragment>
   );

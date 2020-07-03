@@ -1,6 +1,11 @@
 body {
   margin: 0;
+  text-align: center;
+  color: bisque;
   background-image: url('./Img/backdrop.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+}
+.card {
+  background-color: rgba(0, 0, 0, 0.616);
 }

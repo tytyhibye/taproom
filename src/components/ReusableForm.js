@@ -25,7 +25,7 @@ function ReusableForm(props) {
           type='text'
           name='description'
           placeholder='Flavor Profile' />
-        <button type='submit'>{props.buttonText}</button>
+        <button className="btn" type='submit'>{props.buttonText}</button>
 
       </form>
     </React.Fragment>
