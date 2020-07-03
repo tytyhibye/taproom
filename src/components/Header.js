@@ -26,19 +26,19 @@ function Header() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="black" aria-label="home">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="home">
             <MenuIcon />
           </IconButton>
-          <IconButton edge="start" className={classes.menuButton} color="black" aria-label="add">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="add">
             <MenuIcon />
           </IconButton>
-          <IconButton edge="start" className={classes.menuButton} color="black" aria-label="list">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="list">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Ty Ty's TAPROOM
           </Typography>
-          {/* <Button color="black">Login</Button> */}
+          {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
     </div>

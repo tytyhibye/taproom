@@ -3,6 +3,7 @@ import NewForm from "./NewForm";
 import BeerList from "./BeerList";
 import Details from "./Details";
 import EditForm from './EditForm';
+import Count from './Count';
 
 class BeerControl extends React.Component {
 
@@ -50,6 +51,10 @@ class BeerControl extends React.Component {
     }
   }
 
+  decreaseCount = () => {
+    this.setState({ count: this.state.count -1 });
+  }
+
   handleEditingBeerInList = (beerToEdit) => {
     const editedMasterBeerList = this.state.masterBeerList
       .filter(beer => beer.id !== this.state.selectedBeer.id)
@@ -79,28 +84,29 @@ class BeerControl extends React.Component {
     // let buttonText = null;
 
     if (this.state.editing) {
-      currentlyVisibleState = <EditForm entry={this.state.selectedEntry} onEditEntry={this.handleEditingEntryInList} />
-      // buttonText = "Return to Entry List";
+      currentlyVisibleState = <EditForm beer={this.state.selectedBeer} onEditBeer={this.handleEditingBeerInList} />
+      // buttonText = "Return to Beer List";
     }
-    else if (this.state.selectedEntry != null) {
+    else if (this.state.selectedBeer != null) {
       currentlyVisibleState =
         <Details
-          entry={this.state.selectedEntry}
-          onClickingDelete={this.handleDeletingEntry}
+          beer={this.state.selectedBeer}
+          onClickingDelete={this.handleDeletingBeer}
           onClickingEdit={this.handleEditClick}
         />
-      // buttonText = "Return to Entry List";
+      // buttonText = "Return to Beer List";
     } else if (this.state.counter === 0) {
       currentlyVisibleState =
         <BeerList
-          entryList={this.state.masterEntryList}
-          onEntrySelection={this.handleChangingSelectedEntry}
+          beerList={this.state.masterBeerList}
+          onBeerSelection={this.handleChangingSelectedBeer}
+          onClickingDecrement={this.decreaseCount}
         />
-      // buttonText = "Add Entry!";
+      // buttonText = "Add Beer!";
     } else if (this.state.counter === 1) {
       currentlyVisibleState =
         <NewForm
-          onNewEntryCreation={this.handleAddingNewEntryToList}
+          onNewBeerCreation={this.handleAddingNewBeerToList}
         />
       // buttonText = "Return to List";
     }

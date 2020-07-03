@@ -1,29 +1,20 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Beer from './Beer';
+import Count from './Count';
 import PropTypes from "prop-types";
-import Details from './Details';
 
-const  useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
-}));
+
 
 function BeerList(props) {
-  const classes = useStyles();
+  console.log("beer list", props.beerList);
   return (
-    <div className={classes.root}>
-      {props.beerList.map((beer) =>
+    <React.Fragment>
+      <h3>Current Beer List</h3>
+      {props.beerList.length > 0 ? props.beerList.map(beer => (
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -41,22 +32,20 @@ function BeerList(props) {
             id={beer.id}
             key={beer.id}
             />
-          <Typography className={classes.heading}>{beer.name}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <button onClick={props.onClickingDecrement(beer.count)}>Sold Pint</button>
-          <p>Pints Left: {beer.count}</p>
+          <Count/>
         </AccordionDetails>
       </Accordion>
-      )}
-    </div>
+      )
+      ) : <h2>No beers available</h2>}
+    </React.Fragment>
   );
 }
 
 BeerList.propTypes = {
   beerList: PropTypes.array,
   onBeerSelection: PropTypes.func,
-  onClickingDecrement: PropTypes.func
 };
 
 export default BeerList;
