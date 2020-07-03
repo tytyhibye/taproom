@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "./Header";
 import BeerControl from "./BeerControl";
-import List from "./BeerList";
+import BeerList from "./BeerList";
 import { Grid } from "@material-ui/core";
 import '../App.css';
 
@@ -15,7 +15,7 @@ function App() {
             <BeerControl/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <List/>
+            <BeerList/>
           </Grid>
         </Grid>
       </div>

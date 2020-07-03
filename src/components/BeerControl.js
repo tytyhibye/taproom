@@ -32,24 +32,24 @@ class BeerControl extends React.Component {
     });
   }
 
-  handleClick = () => {
-    if (this.state.selectedBeer != null) {
-      this.setState({
-        formVisibleOnPage: false,
-        selectedBeer: null,
-        editing: false
-      });
-    } else if (this.state.counter === 0) {
-      this.setState(prevState => ({
-        counter: prevState.counter + 1
-      }));
-    } else {
-      this.setState(prevState => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage,
-        counter: 0
-      }));
-    }
-  }
+  // handleClick = () => {
+  //   if (this.state.selectedBeer != null) {
+  //     this.setState({
+  //       formVisibleOnPage: false,
+  //       selectedBeer: null,
+  //       editing: false
+  //     });
+  //   } else if (this.state.counter === 0) {
+  //     this.setState(prevState => ({
+  //       counter: prevState.counter + 1
+  //     }));
+  //   } else {
+  //     this.setState(prevState => ({
+  //       formVisibleOnPage: !prevState.formVisibleOnPage,
+  //       counter: 0
+  //     }));
+  //   }
+  // }
 
   decreaseCount = () => {
     if(this.state.count <=10){
@@ -84,11 +84,11 @@ class BeerControl extends React.Component {
 
   render() {
     let currentlyVisibleState = null;
-    // let buttonText = null;
+    let buttonText = null;
 
     if (this.state.editing) {
       currentlyVisibleState = <EditForm beer={this.state.selectedBeer} onEditBeer={this.handleEditingBeerInList} />
-      // buttonText = "Return to Beer List";
+      buttonText = "Return to Beer List";
     }
     else if (this.state.selectedBeer != null) {
       currentlyVisibleState =
@@ -97,27 +97,27 @@ class BeerControl extends React.Component {
           onClickingDelete={this.handleDeletingBeer}
           onClickingEdit={this.handleEditClick}
         />
-      // buttonText = "Return to Beer List";
-    } else if (this.state.counter === 0) {
+      buttonText = "Return to Beer List";
+    } else if (this.state.counter === 0) { //possibly not being called
       currentlyVisibleState =
         <BeerList
           beerList={this.state.masterBeerList}
           onBeerSelection={this.handleChangingSelectedBeer}
           onClickingDecrement={this.decreaseCount}
         />
-      // buttonText = "Add Beer!";
+      buttonText = "Add Beer!";
     } else if (this.state.counter === 1) {
       currentlyVisibleState =
         <NewForm
           onNewBeerCreation={this.handleAddingNewBeerToList}
         />
-      // buttonText = "Return to List";
+      buttonText = "Return to List";
     }
 
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        {/* <button onClick={this.handleClick}>{buttonText}</button> */}
+        <button onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }    
