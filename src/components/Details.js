@@ -16,6 +16,7 @@ function BeerDetail(props) {
       <hr />
       <p>Pints Left in Keg: {beer.pintCount}</p>
       <button className="btn" onClick={props.onClickingSell}>Sell a pint</button>
+      <hr />
     </React.Fragment>
   ); 
 }
