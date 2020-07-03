@@ -28,21 +28,23 @@ function BeerList(props) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
-        ><Beer
-          whenBeerClicked={props.onBeerSelection}
-          name={beer.name}
-          brand={beer.brand}
-          price={beer.price}
-          abv={beer.abv}
-          description={beer.description}
-          count={beer.count}
-          id={beer.id}
-          key={beer.id} />
+          >
+          <Beer
+            whenBeerClicked={props.onBeerSelection}
+            name={beer.name}
+            brand={beer.brand}
+            price={beer.price}
+            abv={beer.abv}
+            description={beer.description}
+            count={beer.count}
+            id={beer.id}
+            key={beer.id}
+            />
           <Typography className={classes.heading}>{beer.name}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <button onClick={props.onClickingDecrement(beer.count)}>Sold Pint</button>
-
+          <p>Pints Left: {beer.count}</p>
         </AccordionDetails>
       </Accordion>
       )}
