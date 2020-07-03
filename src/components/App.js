@@ -9,9 +9,9 @@ function App() {
     <React.Fragment>
         <Grid container direction="column">
           <Grid item><Header/></Grid>
-          <Grid item container className="card">
+            <Grid item container>
             <Grid item xs={0} sm={2}/>
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} sm={8} className="card">
               <BeerControl/>
             </Grid>
             <Grid item xs={0} sm={2}/>

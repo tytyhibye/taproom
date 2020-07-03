@@ -12,6 +12,7 @@ class BeerControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       masterBeerList: [],
+      count: 124,
       counter: 0,
       selectedBeer: null,
       editing: false
@@ -31,12 +32,7 @@ class BeerControl extends React.Component {
       counter: 0
     });
   }
-  // decreaseCount = () => {
-  //   if(this.state.count <=10){
-
-  //   }
-  //   this.setState({ count: this.state.count -1 });
-  // }
+  
   handleClick = () => {
     if (this.state.selectedBeer != null) {
       this.setState({
@@ -72,6 +68,14 @@ class BeerControl extends React.Component {
     this.setState({ editing: true });
   }
 
+  decreaseCount = () => {
+    const newCount = this.state.count -1
+      this.setState({
+      count: newCount,
+      selectedBeer: null
+    });
+  }
+
   handleDeletingBeer = (id) => {
     const newMasterBeerList = this.state.masterBeerList.filter(beer => beer.id !== id);
     this.setState({
@@ -94,6 +98,7 @@ class BeerControl extends React.Component {
           beer={this.state.selectedBeer}
           onClickingDelete={this.handleDeletingBeer}
           onClickingEdit={this.handleEditClick}
+          onClickingSell={this.decreaseCount}
         />
       buttonText = "Return to Beer List";
     } else if (this.state.counter === 0) {
@@ -101,7 +106,6 @@ class BeerControl extends React.Component {
         <BeerList
           beerList={this.state.masterBeerList}
           onBeerSelection={this.handleChangingSelectedBeer}
-          // onClickingDecrement={this.decreaseCount}
         />
       buttonText = "Add Beer!";
     } else if (this.state.counter === 1) {
