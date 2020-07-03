@@ -7,8 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Beer from './Beer';
 import PropTypes from "prop-types";
+import Details from './Details';
 
-const useStyles = makeStyles((theme) => ({
+const  useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
