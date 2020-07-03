@@ -74,6 +74,44 @@ class BeerControl extends React.Component {
     });
   }
 
+  render() {
+    let currentlyVisibleState = null;
+    // let buttonText = null;
+
+    if (this.state.editing) {
+      currentlyVisibleState = <EditForm entry={this.state.selectedEntry} onEditEntry={this.handleEditingEntryInList} />
+      // buttonText = "Return to Entry List";
+    }
+    else if (this.state.selectedEntry != null) {
+      currentlyVisibleState =
+        <Details
+          entry={this.state.selectedEntry}
+          onClickingDelete={this.handleDeletingEntry}
+          onClickingEdit={this.handleEditClick}
+        />
+      // buttonText = "Return to Entry List";
+    } else if (this.state.counter === 0) {
+      currentlyVisibleState =
+        <BeerList
+          entryList={this.state.masterEntryList}
+          onEntrySelection={this.handleChangingSelectedEntry}
+        />
+      // buttonText = "Add Entry!";
+    } else if (this.state.counter === 1) {
+      currentlyVisibleState =
+        <NewForm
+          onNewEntryCreation={this.handleAddingNewEntryToList}
+        />
+      // buttonText = "Return to List";
+    }
+
+    return (
+      <React.Fragment>
+        {currentlyVisibleState}
+        {/* <button onClick={this.handleClick}>{buttonText}</button> */}
+      </React.Fragment>
+    );
+  }    
 
 }
 
