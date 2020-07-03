@@ -12,7 +12,7 @@ class BeerControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       masterBeerList: [],
-      count: 124,
+      pintCount: 124,
       counter: 0,
       selectedBeer: null,
       editing: false
@@ -69,9 +69,7 @@ class BeerControl extends React.Component {
   }
 
   decreaseCount = () => {
-    const newCount = this.state.count -1
-      this.setState({
-      count: newCount,
+    this.setState({ pintCount: this.state.pintCount - 1,
       selectedBeer: null
     });
   }
@@ -89,7 +87,7 @@ class BeerControl extends React.Component {
     let buttonText = null;
 
     if (this.state.editing) {
-      currentlyVisibleState = <EditForm beer={this.state.selectedBeer} onEditBeer={this.handleEditingBeerInList} />
+      currentlyVisibleState = <EditForm beer={this.state.selectedBeer} onEdit={this.handleEditingBeerInList} />
       buttonText = "Return to Beer List";
     }
     else if (this.state.selectedBeer != null) {

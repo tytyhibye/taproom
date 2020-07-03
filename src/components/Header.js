@@ -29,12 +29,6 @@ function Header() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="home">
             <MenuIcon />
           </IconButton>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="add">
-            <MenuIcon />
-          </IconButton>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="list">
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
             Ty Ty's TAPROOM
           </Typography>

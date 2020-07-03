@@ -14,8 +14,8 @@ function BeerDetail(props) {
       <button className="btn" onClick={props.onClickingEdit}>Edit Details</button>
       <button className="btn" onClick={() => onClickingDelete(beer.id)}>Delete Beer</button>
       <hr />
-      <p>Pints Left in Keg: {beer.count}</p>
-      <button className="btn" onClick={()=> onClickingSell(beer.id)}>Sell a pint</button>
+      <p>Pints Left in Keg: {beer.pintCount}</p>
+      <button className="btn" onClick={props.onClickingSell}>Sell a pint</button>
     </React.Fragment>
   ); 
 }
