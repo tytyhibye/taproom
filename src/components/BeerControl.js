@@ -3,7 +3,7 @@ import NewForm from "./NewForm";
 import BeerList from "./BeerList";
 import Details from "./Details";
 import EditForm from './EditForm';
-import Count from './Count';
+// import Count from './Count';
 
 class BeerControl extends React.Component {
 
@@ -52,6 +52,9 @@ class BeerControl extends React.Component {
   }
 
   decreaseCount = () => {
+    if(this.state.count <=10){
+
+    }
     this.setState({ count: this.state.count -1 });
   }
 
