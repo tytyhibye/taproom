@@ -7,6 +7,7 @@ import '../App.css';
 function App() {
   return (
     <React.Fragment>
+      <div className="bg">
         <Grid container direction="column">
           <Grid item><Header/></Grid>
             <Grid item container>
@@ -17,6 +18,7 @@ function App() {
             <Grid item xs={0} sm={2}/>
           </Grid>
         </Grid>
+      </div>
     </React.Fragment>
   );
 }

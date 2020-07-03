@@ -3,8 +3,8 @@ body {
   text-align: center;
   color: bisque;
   background-image: url('./Img/backdrop.jpg');
-  background-size: stretch;
   background-repeat: no-repeat;
+  background-size: 100vw;
 }
 .card {
   background-color: rgba(0, 0, 0, 0.616);

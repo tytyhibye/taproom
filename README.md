@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tap Room
+### Sneezed out by Tyler Bates
+A broken janky site that failed miserably in implementing any sort of ui component whatsoever which is extra discouraging since that's the whole point of react. The basic functionality was salvaged from the wreckage but it looks like garbage and won't display pint count or decrement it. I plan on killing this with fire and starting from scratch. here's a look at the diagram crafted from a younger, much more optimistic me:
+<img src='public\Diagram.drawio.png'>
 
 ## Available Scripts
 
