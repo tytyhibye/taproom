@@ -1,0 +1,6 @@
+body {
+  margin: 0;
+  background-image: url('./Img/backdrop.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
