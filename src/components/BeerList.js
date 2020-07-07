@@ -1,34 +1,35 @@
-import React from 'react';
-import Beer from './Beer';
+import React from "react";
+import Beer from "./Beer";
 import PropTypes from "prop-types";
 
-
-
 function BeerList(props) {
-  console.log(props.beerList);
   return (
     <React.Fragment>
       <h3>Beer List</h3>
-      {props.beerList.length > 0 ? props.beerList.map(beer => (
-        
+      {props.beerList.length > 0 ? (
+        props.beerList.map((beer) => (
           <Beer
-          whenBeerClicked={props.onBeerSelection}
-          name={beer.name}
-          brand={beer.type}
-          price={beer.location}
-          abv={beer.level}
-          description={beer.description}
-          id={beer.id}
-          key={beer.id} />
-      )
-          ): <h2>No Beers Available!</h2>}
+            whenBeerClicked={props.onBeerSelection}
+            name={beer.name}
+            brand={beer.brand}
+            price={beer.location}
+            abv={beer.level}
+            description={beer.description}
+            pintCount={beer.pintCount}
+            id={beer.id}
+            key={beer.id}
+          />
+        ))
+      ) : (
+        <h2>No Beers Available!</h2>
+      )}
     </React.Fragment>
-  ); 
+  );
 }
 
 BeerList.propTypes = {
   beerList: PropTypes.array,
-  onBeerSelection: PropTypes.func
+  onBeerSelection: PropTypes.func,
 };
 
 export default BeerList;

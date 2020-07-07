@@ -1,86 +1,106 @@
 import React from "react";
 import NewForm from "./NewForm";
 import BeerList from "./BeerList";
-import Details from "./Details";
-import EditForm from './EditForm';
-
+import BeerDetail from "./BeerDetail";
+import EditForm from "./EditForm";
 
 class BeerControl extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       formVisibleOnPage: false,
       masterBeerList: [],
       pintCount: 124,
-      counter: 0,
       selectedBeer: null,
-      editing: false
+      editing: false,
     };
   }
 
   handleChangingSelectedBeer = (id) => {
-    const selectedBeer = this.state.masterBeerList.filter(beer => beer.id === id)[0];
+    const selectedBeer = this.state.masterBeerList.filter(
+      (beer) => beer.id === id
+    )[0];
     this.setState({ selectedBeer: selectedBeer });
-  }
+  };
 
   handleAddingNewBeerToList = (newBeer) => {
-
     const newMasterBeerList = this.state.masterBeerList.concat(newBeer);
     this.setState({
       masterBeerList: newMasterBeerList,
-      counter: 0
+      formVisibleOnPage: false,
+      // editing: false,
     });
-  }
-  
+  };
+
   handleClick = () => {
     if (this.state.selectedBeer != null) {
       this.setState({
         formVisibleOnPage: false,
         selectedBeer: null,
-        editing: false
+        editing: false,
       });
-    } else if (this.state.counter === 0) {
-      this.setState(prevState => ({
-        counter: prevState.counter + 1
-      }));
     } else {
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         formVisibleOnPage: !prevState.formVisibleOnPage,
-        counter: 0
       }));
     }
   }
 
   handleEditingBeerInList = (beerToEdit) => {
     const editedMasterBeerList = this.state.masterBeerList
-      .filter(beer => beer.id !== this.state.selectedBeer.id)
+      .filter((beer) => beer.id !== this.state.selectedBeer.id)
       .concat(beerToEdit);
     this.setState({
       masterBeerList: editedMasterBeerList,
       editing: false,
-      selectedBeer: null
+      selectedBeer: null,
     });
-  }
+  };
 
   handleEditClick = () => {
     console.log("handleEditClick reached!");
     this.setState({ editing: true });
-  }
+  };
 
-  decreaseCount = () => {
-    this.setState({ pintCount: this.state.pintCount - 1,
-      selectedBeer: null
+  handleBuyingAPint = (id) => {
+    const purchasedPint = this.state.masterBeerList.filter(
+      (beer) => beer.id === id
+    )[0];
+    if (purchasedPint.pintCount === 0) {
+      return purchasedPint.pintCount;
+    } else {
+      purchasedPint.pintCount -= 1;
+    }
+    const editedMasterBeerList = this.state.masterBeerList
+      .filter((beer) => beer.id !== this.state.selectedBeer.id)
+      .concat(purchasedPint);
+    this.setState({
+      masterBeerList: editedMasterBeerList,
     });
-  }
+  };
+
+  handleRestocking = (id) => {
+    const restockBeer = this.state.masterBeerList.filter(
+      (beer) => beer.id === id
+    )[0];
+    restockBeer.pintCount = 124;
+    const editedMasterBeerList = this.state.masterBeerList
+      .filter((beer) => beer.id !== this.state.selectedBeer.id)
+      .concat(restockBeer);
+    this.setState({
+      masterBeerList: editedMasterBeerList,
+    });
+  };
 
   handleDeletingBeer = (id) => {
-    const newMasterBeerList = this.state.masterBeerList.filter(beer => beer.id !== id);
+    const newMasterBeerList = this.state.masterBeerList.filter(
+      (beer) => beer.id !== id
+    );
     this.setState({
       masterBeerList: newMasterBeerList,
-      selectedBeer: null
+      selectedBeer: null,
     });
-  }
+  };
 
   render() {
     let currentlyVisibleState = null;
@@ -89,35 +109,39 @@ class BeerControl extends React.Component {
     if (this.state.editing) {
       currentlyVisibleState = <EditForm beer={this.state.selectedBeer} onEdit={this.handleEditingBeerInList} />
       buttonText = "Return to Beer List";
-    }
-    else if (this.state.selectedBeer != null) {
-      currentlyVisibleState =
-        <Details
+    } else if (this.state.selectedBeer != null) {
+      currentlyVisibleState = (
+        <BeerDetail
           beer={this.state.selectedBeer}
           onClickingDelete={this.handleDeletingBeer}
           onClickingEdit={this.handleEditClick}
-          onClickingSell={this.decreaseCount}
+          onClickingBuy={this.handleBuyingAPint}
+          onClickingRestock={this.handleRestocking}
         />
+      );
       buttonText = "Return to Beer List";
-    } else if (this.state.counter === 0) {
-      currentlyVisibleState =
-        <BeerList
-          beerList={this.state.masterBeerList}
-          onBeerSelection={this.handleChangingSelectedBeer}
-        />
-      buttonText = "Add Beer!";
-    } else if (this.state.counter === 1) {
-      currentlyVisibleState =
-        <NewForm
-          onNewBeerCreation={this.handleAddingNewBeerToList}
-        />
-      buttonText = "Return to List";
-    }
+      
+    } else if (this.state.formVisibleOnPage) {
+      currentlyVisibleState = (
+        <NewForm onNewBeerCreation={this.handleAddingNewBeerToList} />
+        );
+        buttonText = "Return to List";
+      } else {
+        currentlyVisibleState = (
+          <BeerList
+            beerList={this.state.masterBeerList}
+            onBeerSelection={this.handleChangingSelectedBeer}
+            />
+            );
+          buttonText = "Add Beer!";
+        }
 
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        <button className="btn" onClick={this.handleClick}>{buttonText}</button>
+        <button className="btn" onClick={this.handleClick}>
+          {buttonText}
+        </button>
       </React.Fragment>
     );
   }
