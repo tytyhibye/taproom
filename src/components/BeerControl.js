@@ -33,7 +33,7 @@ class BeerControl extends React.Component {
   };
 
   handleClick = () => {
-    if (this.state.selectedBeer != null) {
+    if (this.state.selectedBeer !== null) {
       this.setState({
         formVisibleOnPage: false,
         selectedBeer: null,
@@ -115,7 +115,7 @@ class BeerControl extends React.Component {
           beer={this.state.selectedBeer}
           onClickingDelete={this.handleDeletingBeer}
           onClickingEdit={this.handleEditClick}
-          onClickingBuy={this.handleBuyingAPint}
+          onClickingSell={this.handleBuyingAPint}
           onClickingRestock={this.handleRestocking}
         />
       );

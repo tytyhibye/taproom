@@ -1,6 +1,8 @@
 ## Tap Room
-### Sneezed out by Tyler Bates
-A broken janky site that failed miserably in implementing any sort of ui component whatsoever which is extra discouraging since that's the whole point of react. The basic functionality was salvaged from the wreckage but it looks like garbage and won't display pint count or decrement it. I plan on killing this with fire and starting from scratch. here's a look at the diagram crafted from a younger, much more optimistic me:
+### By Tyler Bates
+A site allowing the user to add, update, delete and keep track of kegs of beer. Each keg is defaulted to carrying 124 pints which will decrement as they are sold via the "sell a pint" button.
+
+### Diagram
 <img src='public\Diagram.drawio.png'>
 
 ## Available Scripts
